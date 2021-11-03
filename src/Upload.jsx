@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 export function Upload({ children }) {
-  const [quizes, setQuizes] = useState({});
-  const [newses, setNewses] = useState([{ name: "Kunio Hirata" }]);
+  const [quizes, setQuizes] = useState({ JP: { 0: "KUNIO" } });
+  const [newses, setNewses] = useState({ name: "Kunio Hirata" });
 
   const handleChange = (e) => {
     const fileReader = new FileReader();
@@ -10,18 +10,14 @@ export function Upload({ children }) {
     fileReader.onload = (e) => {
       const jsons = JSON.parse(e.target.result);
       console.log("JSON=");
-      console.log(jsons);
       console.log(typeof jsons);
-      console.log("setQue");
+      console.log(jsons);
       setQuizes(jsons);
-      // console.log("Beautiful");
-      // console.log(quizes);
     };
   };
 
   const onClickUnko = (e) => {
-    setNewses([...newses, { name: "Ibuki Hirata" }]);
-    console.log(newses);
+    setNewses({ ...newses, name: "Ibuki Hirata" });
   };
   return (
     <>
@@ -29,8 +25,10 @@ export function Upload({ children }) {
 
       <input type="file" onChange={handleChange} />
       <br />
-      {"uploaded file content -- " + quizes.JP}
+      {console.log("YANCHA")}
+      {console.log(quizes["JP"]["1"])}
       <button onClick={onClickUnko}> Unko </button>
+      <p>{newses.name}</p>
     </>
   );
 }
