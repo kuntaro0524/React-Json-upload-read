@@ -9,9 +9,9 @@ export function Upload({ children }) {
     fileReader.onload = (e) => {
       console.log("e.target.result", e.target.result);
       setFiles(e.target.result);
+      const jsons = JSON.parse(e.target.result);
+      console.log(jsons);
     };
-    const jsons = JSON.parse(files);
-    console.log(jsons);
   };
   return (
     <>
