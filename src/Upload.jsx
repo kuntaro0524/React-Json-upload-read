@@ -3,13 +3,15 @@ import React, { useState } from "react";
 export function Upload({ children }) {
   const [files, setFiles] = useState("");
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const fileReader = new FileReader();
     fileReader.readAsText(e.target.files[0], "UTF-8");
-    fileReader.onload = e => {
+    fileReader.onload = (e) => {
       console.log("e.target.result", e.target.result);
       setFiles(e.target.result);
     };
+    const jsons = JSON.parse(files);
+    console.log(jsons);
   };
   return (
     <>
