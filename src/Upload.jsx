@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { quizState } from "./quizState";
 
 export function Upload({ children }) {
-  const [quizes, setQuizes] = useState([]);
-  const [newses, setNewses] = useState({ name: "Kunio Hirata" });
+  // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス
+  const [quizInfo, setQuizInfo] = useRecoilState(quizState);
 
   const handleChange = (e) => {
     const fileReader = new FileReader();
@@ -12,29 +14,23 @@ export function Upload({ children }) {
       console.log("JSON=");
       console.log(typeof jsons);
       console.log(jsons);
-      setQuizes(jsons);
+      setQuizInfo(jsons);
     };
   };
 
-  const onClickUnko = (e) => {
-    setNewses({ ...newses, name: "Ibuki Hirata" });
-  };
   return (
     <>
-      <h1>Upload Json file - Example</h1>
+      <h1> JSONをアップロードしましょう </h1>
       <input type="file" onChange={handleChange} />
       <br />
       {console.log("YANCHA")}
-      {/* {console.log(quizes.)} */}
 
-      {quizes.map((quiz) => (
+      {quizInfo.map((quiz) => (
         <h1 key={quiz.Question}>
           {" "}
           {quiz.Question} {quiz.Answer}
         </h1>
       ))}
-      <button onClick={onClickUnko}> Unko </button>
-      <p>{newses.name}</p>
     </>
   );
 }
