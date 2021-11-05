@@ -1,20 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, useRecoilValue } from "recoil";
+import { Question } from "./component/atom/Question";
+import { readState } from "./quizState";
 import "./styles.css";
 import { Upload } from "./Upload";
 
 function App() {
+  // const read_flag = useRecoilValue(readState);
+  // console.log(read_flag);
+
   return (
     <div className="App">
-      <RecoilRoot>
-        <Upload>
-          <button>Upload Files</button>
-        </Upload>
-      </RecoilRoot>
+      <Upload>
+        <button>Upload Files</button>
+      </Upload>
+      {/* {useRecoilValue(readState) ? <p>True</p> : <p>False</p>} */}
+      {useRecoilValue(readState).isRead ? <p>True</p> : <p> False</p>}
+      <Question question="Is this your pen?" />
     </div>
   );
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(
+  <RecoilRoot>
+    <App />
+  </RecoilRoot>,
+  rootElement
+);

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { quizState } from "./quizState";
+import { quizState, readState } from "./quizState";
 
 export function Upload({ children }) {
   // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス
   const [quizInfo, setQuizInfo] = useRecoilState(quizState);
+  // JSONで一気にやってみたかったけど分けてステート管理するのを実装してみる
+  const [readInfo, setReadInfo] = useRecoilState(readState);
 
   const handleChange = (e) => {
     const fileReader = new FileReader();
@@ -15,6 +17,7 @@ export function Upload({ children }) {
       console.log(typeof jsons);
       console.log(jsons);
       setQuizInfo(jsons);
+      setReadInfo({ isRead: true });
     };
   };
 
@@ -26,10 +29,7 @@ export function Upload({ children }) {
       {console.log("YANCHA")}
 
       {quizInfo.map((quiz) => (
-        <h1 key={quiz.Question}>
-          {" "}
-          {quiz.Question} {quiz.Answer}
-        </h1>
+        <h1 key={quiz.Question}>{quiz.Question}</h1>
       ))}
     </>
   );
