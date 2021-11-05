@@ -16,8 +16,11 @@ function App() {
         <button>Upload Files</button>
       </Upload>
       {/* {useRecoilValue(readState) ? <p>True</p> : <p>False</p>} */}
-      {useRecoilValue(readState).isRead ? <p>True</p> : <p> False</p>}
-      <Question question="Is this your pen?" />
+      {useRecoilValue(readState).isRead ? (
+        <Question question="Is this your pen?" />
+      ) : (
+        <p> not read</p>
+      )}
     </div>
   );
 }
