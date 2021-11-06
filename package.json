@@ -5,6 +5,11 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@chakra-ui/icons": "1.0.17",
+    "@chakra-ui/react": "1.6.12",
+    "@emotion/react": "11.5.0",
+    "@emotion/styled": "11.3.0",
+    "framer-motion": "5.2.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-dropzone": "10.1.9",

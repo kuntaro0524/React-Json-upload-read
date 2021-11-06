@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { RecoilRoot, useRecoilValue } from "recoil";
+import { RecoilRoot } from "recoil";
 import { Question } from "./component/atom/Question";
-import { readState } from "./quizState";
 import "./styles.css";
 import { Upload } from "./Upload";
 
@@ -15,12 +14,7 @@ function App() {
       <Upload>
         <button>Upload Files</button>
       </Upload>
-      {/* {useRecoilValue(readState) ? <p>True</p> : <p>False</p>} */}
-      {useRecoilValue(readState).isRead ? (
-        <Question question="Is this your pen?" />
-      ) : (
-        <p> not read</p>
-      )}
+      <Question question="Is this your pen, really?" />
     </div>
   );
 }

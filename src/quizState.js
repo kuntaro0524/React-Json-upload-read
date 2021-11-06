@@ -9,3 +9,8 @@ export const readState = atom({
   key: "readState",
   default: { isRead: false }
 });
+
+export const answerState = atom({
+  key: "answerState",
+  default: { isAnswered: false }
+});

@@ -13,9 +13,9 @@ export function Upload({ children }) {
     fileReader.readAsText(e.target.files[0], "UTF-8");
     fileReader.onload = (e) => {
       const jsons = JSON.parse(e.target.result);
-      console.log("JSON=");
-      console.log(typeof jsons);
-      console.log(jsons);
+      // console.log("JSON=");
+      // console.log(typeof jsons);
+      // console.log(jsons);
       setQuizInfo(jsons);
       setReadInfo({ isRead: true });
     };
@@ -26,11 +26,6 @@ export function Upload({ children }) {
       <h1> JSONをアップロードしましょう </h1>
       <input type="file" onChange={handleChange} />
       <br />
-      {console.log("YANCHA")}
-
-      {quizInfo.map((quiz) => (
-        <h1 key={quiz.Question}>{quiz.Question}</h1>
-      ))}
     </>
   );
 }
