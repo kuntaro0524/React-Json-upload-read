@@ -1,3 +1,4 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import { RecoilRoot } from "recoil";
@@ -11,10 +12,12 @@ function App() {
 
   return (
     <div className="App">
-      <Upload>
-        <button>Upload Files</button>
-      </Upload>
-      <Question question="Is this your pen, really?" />
+      <ChakraProvider>
+        <Upload>
+          <button>Upload Files</button>
+        </Upload>
+        <Question question="Is this your pen, really?" />
+      </ChakraProvider>
     </div>
   );
 }
