@@ -12,5 +12,5 @@ export const readState = atom({
 
 export const answerState = atom({
   key: "answerState",
-  default: { isAnswered: false }
+  default: { isAnswered: false, currentIndex: 0, inputAnswer: "" }
 });

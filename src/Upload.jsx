@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { quizState, readState } from "./quizState";
+import { quizState, readState } from "./component/hooks/quizState";
 
 export function Upload({ children }) {
   // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス

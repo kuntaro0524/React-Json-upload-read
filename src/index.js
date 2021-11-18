@@ -1,14 +1,16 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
-import { RecoilRoot } from "recoil";
-import { Question } from "./component/atom/Question";
-import "./styles.css";
+import { RecoilRoot, useRecoilValue } from "recoil";
+import { QuestionBox } from "./component/atom/QuestionBox";
+import { readState } from "./component/hooks/quizState";
 import { Upload } from "./Upload";
 
 function App() {
   // const read_flag = useRecoilValue(readState);
   // console.log(read_flag);
+  // JSONで一気にやってみたかったけど分けてステート管理するのを実装してみる
+  const readInfo = useRecoilValue(readState);
 
   return (
     <div className="App">
@@ -16,7 +18,7 @@ function App() {
         <Upload>
           <button>Upload Files</button>
         </Upload>
-        <Question question="Is this your pen, really?" />
+        {readInfo.isRead ? <QuestionBox /> : null}
       </ChakraProvider>
     </div>
   );
