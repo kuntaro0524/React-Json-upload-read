@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { MyButton } from "./MyButton";
 
 export const QuestionBox = (props) => {
@@ -8,8 +8,13 @@ export const QuestionBox = (props) => {
 
   return (
     <div>
-      <Box bg="green"> {quizBody} </Box>
-      <MyButton> Push me </MyButton>
+      <Flex bg="tomato" size="400px" w="800px">
+        <Box>
+          <Text fontSize="3xl">{quizBody}</Text>
+          <MyButton> Correct? </MyButton>
+          <MyButton> Show answer </MyButton>
+        </Box>
+      </Flex>
     </div>
   );
 };
