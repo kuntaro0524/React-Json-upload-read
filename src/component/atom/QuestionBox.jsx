@@ -4,6 +4,8 @@ import { MyButton } from "./MyButton";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { answerState, quizState, readState } from "../hooks/quizState";
 
+import { AnswerBox } from "../atom/AnswerBox";
+
 export const QuestionBox = (props) => {
   // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス
   const [quizInfo, setQuizInfo] = useRecoilState(quizState);
@@ -43,6 +45,7 @@ export const QuestionBox = (props) => {
             placeholder="ここに答えを書く"
             onChange={onChangeInput}
           />
+          <AnswerBox />
           <MyButton> Correct? </MyButton>
           <MyButton onClick={onClickShowAnswer}> Show answer </MyButton>
         </Box>
