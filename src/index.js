@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { RecoilRoot, useRecoilValue } from "recoil";
 import { QuestionBox } from "./component/atom/QuestionBox";
 import { readState } from "./component/hooks/quizState";
+
+import { QuizLayout } from "./component/layout/QuizLayout";
 import { Upload } from "./Upload";
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
           <button>Upload Files</button>
         </Upload>
         {readInfo.isRead ? <QuestionBox /> : null}
+        <QuizLayout />
       </ChakraProvider>
     </div>
   );

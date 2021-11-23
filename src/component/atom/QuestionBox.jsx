@@ -37,7 +37,7 @@ export const QuestionBox = (props) => {
   };
   return (
     <div>
-      <Flex bg="tomato" size="400px" w="800px">
+      <Flex bg="green.100" size="400px" w="800px">
         <Box>
           <Text fontSize="3xl"> {current_question.Question} </Text>
           <Input
@@ -47,7 +47,9 @@ export const QuestionBox = (props) => {
           />
           <AnswerBox />
           <MyButton> Correct? </MyButton>
-          <MyButton onClick={onClickShowAnswer}> Show answer </MyButton>
+          <MyButton onClick={onClickShowAnswer} colorScheme="teal">
+            Show answer
+          </MyButton>
         </Box>
       </Flex>
     </div>
