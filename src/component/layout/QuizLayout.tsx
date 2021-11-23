@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Center, Flex } from "@chakra-ui/react";
 
 import {
   Table,
@@ -15,20 +15,28 @@ import {
 export const QuizLayout = () => {
   return (
     <>
-      <Table variant="simple">
+      <Table size="md" variant="simple" colorScheme="black">
         <TableCaption>現状のまとめ</TableCaption>
         <Thead>
           <Tr>
-            <Th>これまでの問題数</Th>
-            <Th>これまでの正答数</Th>
-            <Th isNumeric>これまでの正答率（％）</Th>
+            <Th textAlign="center">これまでの問題数</Th>
+            <Th textAlign="center">これまでの正答数</Th>
+            <Th textAlign="center" isNumeric>
+              これまでの正答率（％）
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
           <Tr>
-            <Td>20</Td>
-            <Td>10</Td>
-            <Td isNumeric>50.0</Td>
+            <Td fontSize="20px" textAlign="center">
+              20
+            </Td>
+            <Td fontSize="20px" textAlign="center">
+              10
+            </Td>
+            <Td fontSize="20px" textAlign="center" isNumeric>
+              50.0
+            </Td>
           </Tr>
         </Tbody>
       </Table>
