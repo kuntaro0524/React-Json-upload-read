@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { MyButton } from "./MyButton";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { answerState, quizState, readState } from "../hooks/quizState";
@@ -32,24 +32,43 @@ export const QuestionBox = (props) => {
 
     console.log(correctAnswer === answerInfo.inputAnswer);
 
-    let nextIndex = answerInfo.currentIndex + 1;
-    setAnswerInfo({ isAnswered: true, currentIndex: nextIndex });
+    // let nextIndex = answerInfo.currentIndex + 1;
+    setAnswerInfo({ isAnswered: true, currentIndex: answerInfo.currentIndex });
   };
+
+  // 次のクイズボタンを押したらインデックスが変わる
+  const onClickNextQuestion = () => {
+    let nextIndex = answerInfo.currentIndex + 1;
+    setAnswerInfo({ isAnswered: false, currentIndex: nextIndex });
+  };
+
   return (
     <div>
-      <Flex bg="green.100" size="400px" w="800px">
+      <Flex bg="darkgreen.100" size="400px" w="800px">
         <Box>
-          <Text fontSize="3xl"> {current_question.Question} </Text>
-          <Input
-            fontSize="3xl"
-            placeholder="ここに答えを書く"
-            onChange={onChangeInput}
-          />
-          <AnswerBox />
-          <MyButton> Correct? </MyButton>
-          <MyButton onClick={onClickShowAnswer} colorScheme="teal">
-            Show answer
-          </MyButton>
+          <Stack spacing={3}>
+            <Text fontSize="3xl"> {current_question.Question} </Text>
+            <Input
+              fontSize="3xl"
+              placeholder="ここに答えを書く"
+              onChange={onChangeInput}
+            />
+            {answerInfo.isAnswered ? (
+              <AnswerBox answer={current_question.Answer} />
+            ) : (
+              <h1>"waiting"</h1>
+            )}
+            <Flex>
+              <Box>
+                <MyButton onClick={onClickShowAnswer} colorScheme="teal">
+                  Show answer
+                </MyButton>
+                <MyButton onClick={onClickNextQuestion}>
+                  Next question.
+                </MyButton>
+              </Box>
+            </Flex>
+          </Stack>
         </Box>
       </Flex>
     </div>

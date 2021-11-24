@@ -3,24 +3,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { RecoilRoot, useRecoilValue } from "recoil";
 import { QuestionBox } from "./component/atom/QuestionBox";
-import { readState } from "./component/hooks/quizState";
 
 import { QuizLayout } from "./component/layout/QuizLayout";
 import { Upload } from "./Upload";
 
 function App() {
-  // const read_flag = useRecoilValue(readState);
-  // console.log(read_flag);
-  // JSONで一気にやってみたかったけど分けてステート管理するのを実装してみる
-  const readInfo = useRecoilValue(readState);
-
   return (
     <div className="App">
       <ChakraProvider>
         <Upload>
           <button>Upload Files</button>
         </Upload>
-        {readInfo.isRead ? <QuestionBox /> : null}
         <QuizLayout />
       </ChakraProvider>
     </div>

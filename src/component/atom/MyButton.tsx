@@ -11,7 +11,7 @@ type Props = {
 export const MyButton: VFC<Props> = (props) => {
   const { children, onClick, colorScheme } = props;
   return (
-    <Button colorScheme={colorScheme} onClick={onClick}>
+    <Button m={50} w={150} h={150} colorScheme={colorScheme} onClick={onClick}>
       {children}
     </Button>
   );
