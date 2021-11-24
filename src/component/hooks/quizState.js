@@ -1,5 +1,7 @@
 import { atom } from "recoil";
 
+import { Qjson } from "../atom/type/question";
+
 export const quizState = atom({
   key: "quizState",
   default: []

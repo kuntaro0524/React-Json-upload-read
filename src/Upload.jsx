@@ -15,7 +15,7 @@ export function Upload({ children }) {
       const jsons = JSON.parse(e.target.result);
       // console.log("JSON=");
       // console.log(typeof jsons);
-      // console.log(jsons);
+      console.log(jsons);
       setQuizInfo(jsons);
       setReadInfo({ isRead: true });
     };

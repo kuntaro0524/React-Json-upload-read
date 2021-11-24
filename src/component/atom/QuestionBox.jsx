@@ -24,7 +24,7 @@ export const QuestionBox = (props) => {
   console.log(readInfo.isRead);
   console.log(answerInfo);
 
-  const onClickShowAnswer = () => {
+  const onClickCheckAnswer = () => {
     // この問題の答え
     let correctAnswer = current_question.Answer;
     console.log("CORRECT_ANSWER=" + correctAnswer);
@@ -38,7 +38,9 @@ export const QuestionBox = (props) => {
 
   // 次のクイズボタンを押したらインデックスが変わる
   const onClickNextQuestion = () => {
+    // クイズのインデックスをインクリメント
     let nextIndex = answerInfo.currentIndex + 1;
+    if (quizInfo.length === nextIndex) nextIndex = 0;
     setAnswerInfo({ isAnswered: false, currentIndex: nextIndex });
   };
 
@@ -56,12 +58,12 @@ export const QuestionBox = (props) => {
             {answerInfo.isAnswered ? (
               <AnswerBox answer={current_question.Answer} />
             ) : (
-              <h1>"waiting"</h1>
+              <Text fontSize="2xl">"waiting"</Text>
             )}
             <Flex>
               <Box>
-                <MyButton onClick={onClickShowAnswer} colorScheme="teal">
-                  Show answer
+                <MyButton onClick={onClickCheckAnswer} colorScheme="teal">
+                  Check the answer
                 </MyButton>
                 <MyButton onClick={onClickNextQuestion}>
                   Next question.
