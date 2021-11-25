@@ -37,12 +37,16 @@ export const QuestionBox = (props) => {
   };
 
   // 次のクイズボタンを押したらインデックスが変わる
-  const onClickNextQuestion = () => {
+  const onClickNextQuestion = useCallback((e) => {
     // クイズのインデックスをインクリメント
     let nextIndex = answerInfo.currentIndex + 1;
     if (quizInfo.length === nextIndex) nextIndex = 0;
-    setAnswerInfo({ isAnswered: false, currentIndex: nextIndex });
-  };
+    setAnswerInfo({
+      isAnswered: false,
+      currentIndex: nextIndex,
+      inputAnswer: ""
+    });
+  });
 
   return (
     <div>
@@ -51,15 +55,15 @@ export const QuestionBox = (props) => {
           <Stack spacing={3}>
             <Text fontSize="3xl"> {current_question.Question} </Text>
             <Input
+              value={answerInfo.inputAnswer}
               fontSize="3xl"
               placeholder="ここに答えを書く"
               onChange={onChangeInput}
             />
-            {answerInfo.isAnswered ? (
-              <AnswerBox answer={current_question.Answer} />
-            ) : (
-              <Text fontSize="2xl">"waiting"</Text>
-            )}
+            <AnswerBox
+              answer={current_question.Answer}
+              isAnswered={answerInfo.isAnswered}
+            />
             <Flex>
               <Box>
                 <MyButton onClick={onClickCheckAnswer} colorScheme="teal">
