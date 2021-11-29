@@ -1,12 +1,19 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { MyButton } from "./MyButton";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { answerState, quizState, readState } from "../hooks/quizState";
 
 import { AnswerBox } from "../atom/AnswerBox";
+import { useFocus } from "../hooks/useFocus";
+export const useMountEffect = (fun) => useEffect(fun, []);
 
 export const QuestionBox = (props) => {
+  // focusを変えるための設定
+  const [nextRef, setNextRef] = useFocus();
+  const [checkAnswer, setCheckAnswer] = useFocus();
+  useMountEffect(setCheckAnswer);
+
   // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス
   const [quizInfo, setQuizInfo] = useRecoilState(quizState);
   // JSONで一気にやってみたかったけど分けてステート管理するのを実装してみる
@@ -34,6 +41,9 @@ export const QuestionBox = (props) => {
 
     // let nextIndex = answerInfo.currentIndex + 1;
     setAnswerInfo({ isAnswered: true, currentIndex: answerInfo.currentIndex });
+
+    // focus を nextQuestion buttonにする設定
+    setNextRef();
   };
 
   // 次のクイズボタンを押したらインデックスが変わる
@@ -66,10 +76,14 @@ export const QuestionBox = (props) => {
             />
             <Flex>
               <Box>
-                <MyButton onClick={onClickCheckAnswer} colorScheme="teal">
+                <MyButton
+                  onClick={onClickCheckAnswer}
+                  colorScheme="teal"
+                  ref={checkAnswer}
+                >
                   Check the answer
                 </MyButton>
-                <MyButton onClick={onClickNextQuestion}>
+                <MyButton onClick={onClickNextQuestion} ref={nextRef}>
                   Next question.
                 </MyButton>
               </Box>
