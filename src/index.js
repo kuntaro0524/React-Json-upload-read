@@ -5,17 +5,20 @@ import { RecoilRoot, useRecoilValue } from "recoil";
 import { QuestionBox } from "./component/atom/QuestionBox";
 
 import { QuizLayout } from "./component/layout/QuizLayout";
+import { CycleIndexProvider } from "./component/providers/CycleIndexProvider";
 import { Upload } from "./Upload";
 
 function App() {
   return (
     <div className="App">
-      <ChakraProvider>
-        <Upload>
-          <button>Upload Files</button>
-        </Upload>
-        <QuizLayout />
-      </ChakraProvider>
+      <CycleIndexProvider>
+        <ChakraProvider>
+          <Upload>
+            <button>Upload Files</button>
+          </Upload>
+          <QuizLayout />
+        </ChakraProvider>
+      </CycleIndexProvider>
     </div>
   );
 }
