@@ -3,8 +3,8 @@ import { useContext } from "react";
 // useContextを利用していることをカプセル化するためのクラス（らしい）
 
 import {
-  CycleContent,
-  CycleContentType
+  CycleContext,
+  CycleContextType
 } from "../providers/CycleIndexProvider";
 
-export const useCycleNum = (): CycleContentType => useContext(CycleContent);
+export const useCycleNum = (): CycleContextType => useContext(CycleContext);

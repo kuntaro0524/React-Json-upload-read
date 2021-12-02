@@ -16,8 +16,7 @@ export const QuestionBox = (props) => {
   const [answerInfo, setAnswerInfo] = useRecoilState(answerState);
 
   // Providerで定義したサイクル数のフックス
-  const { ncycle } = useCycleNum();
-  console.log("Hirata:" + ncycle);
+  const { ncycle, setCycle } = useCycleNum();
 
   const onChangeInput = useCallback((e) => {
     let userAnswer = e.target.value;
@@ -45,7 +44,10 @@ export const QuestionBox = (props) => {
   const onClickNextQuestion = useCallback((e) => {
     // クイズのインデックスをインクリメント
     let nextIndex = answerInfo.currentIndex + 1;
-    if (quizInfo.length === nextIndex) nextIndex = 0;
+    if (quizInfo.length === nextIndex) {
+      nextIndex = 0;
+      setCycle(ncycle + 1);
+    }
     setAnswerInfo({
       isAnswered: false,
       currentIndex: nextIndex,
@@ -55,6 +57,7 @@ export const QuestionBox = (props) => {
 
   return (
     <div>
+      <h1> {ncycle} </h1>
       <Flex bg="darkgreen.100" size="400px" w="800px">
         <Box>
           <Stack spacing={3}>
