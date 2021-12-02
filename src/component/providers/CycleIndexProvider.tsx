@@ -8,14 +8,16 @@ import React, {
 } from "react";
 
 // 保持する変数と設定関数
-type CycleContextType = {
+export type CycleContextType = {
   ncycle: number;
   // useState などの更新関数の型は以下のようになるらしい→おぼえげー
   setCycle: Dispatch<SetStateAction<number>>;
 };
 
 // Type scriptの表現方法として {} を as で受けて型を指定する
-const CycleContext = createContext<CycleContextType>({} as CycleContextType);
+export const CycleContext = createContext<CycleContextType>(
+  {} as CycleContextType
+);
 
 // childrenすべてに影響があるよーって話だったっけ
 export const CycleIndexProvider = (props: { children: ReactNode }) => {

@@ -5,6 +5,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { answerState, quizState, readState } from "../hooks/quizState";
 
 import { AnswerBox } from "../atom/AnswerBox";
+import { useCycleNum } from "../hooks/useCycleNum";
 
 export const QuestionBox = (props) => {
   // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス
@@ -13,6 +14,10 @@ export const QuestionBox = (props) => {
   const readInfo = useRecoilValue(readState);
   // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス
   const [answerInfo, setAnswerInfo] = useRecoilState(answerState);
+
+  // Providerで定義したサイクル数のフックス
+  const { ncycle } = useCycleNum();
+  console.log("Hirata:" + ncycle);
 
   const onChangeInput = useCallback((e) => {
     let userAnswer = e.target.value;
