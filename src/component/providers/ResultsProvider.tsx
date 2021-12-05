@@ -16,22 +16,22 @@ type ResultType = {
 export type AllResultsType = {
   all_result: ResultType;
   // useState などの更新関数の型は以下のようになるらしい→おぼえげー
-  setCycle: Dispatch<SetStateAction<ResultType>>;
+  setResult: Dispatch<SetStateAction<ResultType>>;
 };
 
 // Type scriptの表現方法として {} を as で受けて型を指定する
-export const AllResultsContext = createContext<AllReusltsType>(
+export const  AllResultsContext= createContext<AllReusltsType>(
   {} as AllResultsType
 );
 
 // childrenすべてに影響があるよーって話だったっけ
-export const CycleIndexProvider = (props: { children: ReactNode }) => {
+export const AllResultsProvider = (props: { children: ReactNode }) => {
   const { children } = props;
   // 再レンダリングする規模によっては変数と関数は別にしたほうが良い場合もある
-  const [ncycle, setCycle] = useState<number>(0);
+  const [all_result, setResult] = useState<number>(0);
   return (
-    <CycleContext.Provider value={{ ncycle, setCycle }}>
+    <AllResultsContext.Provider value={{ all_result, setResult }}>
       {children}
-    </CycleContext.Provider>
+    </AllResultsContext.Provider>
   );
 };

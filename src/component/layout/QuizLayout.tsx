@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import { readState } from "../hooks/quizState";
 import { QuestionBox } from "../molecules/QuestionBox";
 import { useCycleNum } from "../hooks/useCycleNum";
+import { useResult } from "../hooks/useResult";
 
 export const QuizLayout = () => {
   // const read_flag = useRecoilValue(readState);
@@ -16,6 +17,7 @@ export const QuizLayout = () => {
   // サイクル数はContextのフックスを利用する
   // Providerで定義したサイクル数のフックス
   const { ncycle, setCycle } = useCycleNum();
+  const { all_results, setResult} = useResult();
 
   return (
     <>
