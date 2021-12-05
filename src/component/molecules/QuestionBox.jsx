@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { Box, Flex, Input, Stack, Text } from "@chakra-ui/react";
-import { MyButton } from "./MyButton";
+import { MyButton } from "../atom/MyButton";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { answerState, quizState, readState } from "../hooks/quizState";
 

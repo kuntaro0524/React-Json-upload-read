@@ -17,10 +17,11 @@ type Props = {
   n_question: number;
   n_corr: number;
   corr_ratio: number;
+  ncycle: number;
 };
 
 export const ScoreTable: VFC<Props> = memo((props) => {
-  const { n_question, n_corr, corr_ratio } = props;
+  const { n_question, n_corr, corr_ratio, ncycle } = props;
   return (
     <Table size="md" variant="simple" colorScheme="black">
       <TableCaption>現状のまとめ</TableCaption>
@@ -30,6 +31,9 @@ export const ScoreTable: VFC<Props> = memo((props) => {
           <Th textAlign="center">これまでの正答数</Th>
           <Th textAlign="center" isNumeric>
             これまでの正答率（％）
+          </Th>
+          <Th textAlign="center">
+        　現在のサイクル数
           </Th>
         </Tr>
       </Thead>
@@ -44,6 +48,10 @@ export const ScoreTable: VFC<Props> = memo((props) => {
           <Td fontSize="20px" textAlign="center" isNumeric>
             {corr_ratio}
           </Td>
+                    <Td fontSize="20px" textAlign="center" isNumeric>
+            {ncycle}
+          </Td>
+
         </Tr>
       </Tbody>
     </Table>

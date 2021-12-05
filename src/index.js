@@ -2,7 +2,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import { RecoilRoot, useRecoilValue } from "recoil";
-import { QuestionBox } from "./component/atom/QuestionBox";
+import { QuestionBox } from "./component/molecules/QuestionBox";
 
 import { QuizLayout } from "./component/layout/QuizLayout";
 import { CycleIndexProvider } from "./component/providers/CycleIndexProvider";
