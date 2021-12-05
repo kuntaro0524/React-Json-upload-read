@@ -1,6 +1,8 @@
 import React, { memo } from "react";
 import { ReactNode, VFC } from "react";
 import { Button } from "@chakra-ui/react";
+import { useCycleNum } from "../hooks/useCycleNum";
+import { useResult } from "../hooks/useResult";
 
 import {
   Table,
@@ -20,8 +22,17 @@ type Props = {
   ncycle: number;
 };
 
-export const ScoreTable: VFC<Props> = memo((props) => {
-  const { n_question, n_corr, corr_ratio, ncycle } = props;
+export const ScoreTable: VFC<Props> = memo(() => {
+    // サイクル数はContextのフックスを利用する
+  // Providerで定義したサイクル数のフックス
+  const { ncycle, setCycle } = useCycleNum();
+  const { all_result, setResult} = useResult();
+  const n_question=3;
+  const n_corr=5;
+  const corr_ratio=35.0;
+  console.log(all_result);
+
+  // const { n_question, n_corr, corr_ratio, ncycle } = props;
   return (
     <Table size="md" variant="simple" colorScheme="black">
       <TableCaption>現状のまとめ</TableCaption>

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import {
   AllResultsContext,
   AllResultsType
-} from "../providers/AllResultsContext";
+} from "../providers/ResultsProvider";
 
 export const useResult = (): AllResultsType => useContext(AllResultsContext);
 

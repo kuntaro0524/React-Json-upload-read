@@ -5,23 +5,20 @@ import { ScoreTable } from "../atom/ScoreTable";
 import { useRecoilValue } from "recoil";
 import { readState } from "../hooks/quizState";
 import { QuestionBox } from "../molecules/QuestionBox";
-import { useCycleNum } from "../hooks/useCycleNum";
-import { useResult } from "../hooks/useResult";
+import {useResult} from "../hooks/useResult";
 
 export const QuizLayout = () => {
   // const read_flag = useRecoilValue(readState);
   // console.log(read_flag);
   // JSONで一気にやってみたかったけど分けてステート管理するのを実装してみる
   const readInfo = useRecoilValue(readState);
-
-  // サイクル数はContextのフックスを利用する
-  // Providerで定義したサイクル数のフックス
-  const { ncycle, setCycle } = useCycleNum();
-  const { all_results, setResult} = useResult();
+  // パラメタの初期化
+  const { all_result, setResult} = useResult();
+  setResult({n_question:0, n_corr:0, corr_ratio:0.0});
 
   return (
     <>
-      <ScoreTable n_question={3} n_corr={10} corr_ratio={50.2} ncycle={ncycle}/>
+      <ScoreTable />
       {readInfo.isRead ? <QuestionBox /> : null}
     </>
   );

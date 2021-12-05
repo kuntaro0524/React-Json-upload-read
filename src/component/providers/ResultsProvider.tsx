@@ -8,7 +8,7 @@ import React, {
 } from "react";
 
 type ResultType = {
-  n_proc: number,
+  n_question: number,
   n_corr: number,
   corr_ratio: number
 }
@@ -28,7 +28,7 @@ export const  AllResultsContext= createContext<AllReusltsType>(
 export const AllResultsProvider = (props: { children: ReactNode }) => {
   const { children } = props;
   // 再レンダリングする規模によっては変数と関数は別にしたほうが良い場合もある
-  const [all_result, setResult] = useState<number>(0);
+  const [all_result, setResult] = useState<ResultType>(0);
   return (
     <AllResultsContext.Provider value={{ all_result, setResult }}>
       {children}
