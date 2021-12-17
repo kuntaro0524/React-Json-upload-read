@@ -34,14 +34,36 @@ export const QuestionBox = (props) => {
     console.log("CORRECT_ANSWER=" + correctAnswer);
     console.log("User_ANSWER=" + answerInfo.inputAnswer);
 
-    console.log(correctAnswer === answerInfo.inputAnswer);
-
     // let nextIndex = answerInfo.currentIndex + 1;
-    setAnswerInfo({ isAnswered: true, currentIndex: answerInfo.currentIndex });
+    setAnswerInfo({
+      isAnswered: true,
+      currentIndex: answerInfo.currentIndex,
+      isCorrect: correctAnswer === answerInfo.inputAnswer
+    });
   };
 
   // 次のクイズボタンを押したらインデックスが変わる
   const onClickNextQuestion = useCallback((e) => {
+    // 各設問に対する成績を埋めていくわけです
+    console.log("NEXTQUESTION:" + current_question.ntry);
+    console.log("NEXTQUESTION:" + current_question.ncorr);
+
+    // この問題の成績を更新する
+    const new_ntry = current_question.ntry + 1;
+    let new_ncorr = current_question.ncorr;
+    if (answerInfo.isCorrect) {
+      new_ncorr = new_ncorr + 1;
+    }
+    const seiseki_obj = { ntry: new_ntry, ncorr: new_ncorr };
+
+    console.log(seiseki_obj);
+
+    quizInfo.splice(answerInfo.currentIndex, 1, seiseki_obj);
+
+    console.log("NEXTQUESTION:" + quizInfo[answerInfo.currentIndex].ntry);
+
+    // const targetQuestion = quizInfo.find((thisone) => thisone.id === id);
+
     // クイズのインデックスをインクリメント
     let nextIndex = answerInfo.currentIndex + 1;
     if (quizInfo.length === nextIndex) {
