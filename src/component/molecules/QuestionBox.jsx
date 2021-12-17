@@ -24,9 +24,9 @@ export const QuestionBox = (props) => {
   });
   // このときの問題文
   let current_question = quizInfo[answerInfo.currentIndex];
-  console.log(current_question);
-  console.log(readInfo.isRead);
-  console.log(answerInfo);
+  // console.log(current_question);
+  // console.log(readInfo.isRead);
+  // console.log(answerInfo);
 
   const onClickCheckAnswer = () => {
     // この問題の答え
