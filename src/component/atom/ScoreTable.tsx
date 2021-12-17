@@ -23,14 +23,14 @@ type Props = {
 };
 
 export const ScoreTable: VFC<Props> = memo(() => {
-    // サイクル数はContextのフックスを利用する
+  // サイクル数はContextのフックスを利用する
   // Providerで定義したサイクル数のフックス
   const { ncycle, setCycle } = useCycleNum();
-  const { all_result, setResult} = useResult();
-  const n_question=3;
-  const n_corr=5;
-  const corr_ratio=35.0;
-  console.log(all_result);
+  const { all_result, setResult } = useResult();
+  const n_question = 3;
+  const n_corr = 5;
+  const corr_ratio = 35.0;
+  // console.log("ALL_RESULTS"+all_result);
 
   // const { n_question, n_corr, corr_ratio, ncycle } = props;
   return (
@@ -43,9 +43,7 @@ export const ScoreTable: VFC<Props> = memo(() => {
           <Th textAlign="center" isNumeric>
             これまでの正答率（％）
           </Th>
-          <Th textAlign="center">
-        　現在のサイクル数
-          </Th>
+          <Th textAlign="center">　現在のサイクル数</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -59,10 +57,9 @@ export const ScoreTable: VFC<Props> = memo(() => {
           <Td fontSize="20px" textAlign="center" isNumeric>
             {corr_ratio}
           </Td>
-                    <Td fontSize="20px" textAlign="center" isNumeric>
+          <Td fontSize="20px" textAlign="center" isNumeric>
             {ncycle}
           </Td>
-
         </Tr>
       </Tbody>
     </Table>

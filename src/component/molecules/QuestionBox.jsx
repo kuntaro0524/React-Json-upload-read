@@ -24,9 +24,7 @@ export const QuestionBox = (props) => {
   });
   // このときの問題文
   let current_question = quizInfo[answerInfo.currentIndex];
-  // console.log(current_question);
-  // console.log(readInfo.isRead);
-  // console.log(answerInfo);
+  console.log("今の問題番号：" + answerInfo.currentIndex);
 
   const onClickCheckAnswer = () => {
     // この問題の答え
@@ -45,36 +43,40 @@ export const QuestionBox = (props) => {
   // 次のクイズボタンを押したらインデックスが変わる
   const onClickNextQuestion = useCallback((e) => {
     // 各設問に対する成績を埋めていくわけです
-    console.log("NEXTQUESTION:" + current_question.ntry);
-    console.log("NEXTQUESTION:" + current_question.ncorr);
-
     // この問題の成績を更新する
     const new_ntry = current_question.ntry + 1;
     let new_ncorr = current_question.ncorr;
     if (answerInfo.isCorrect) {
       new_ncorr = new_ncorr + 1;
     }
-    const seiseki_obj = { ntry: new_ntry, ncorr: new_ncorr };
+    const new_obj = {
+      Question: current_question.Question,
+      Answer: current_question.Answer,
+      ntry: new_ntry,
+      ncorr: new_ncorr
+    };
+    let copy_quizes = [...quizInfo];
 
-    console.log(seiseki_obj);
+    copy_quizes.splice(answerInfo.currentIndex, 1, new_obj);
+    setQuizInfo(copy_quizes);
 
-    quizInfo.splice(answerInfo.currentIndex, 1, seiseki_obj);
-
-    console.log("NEXTQUESTION:" + quizInfo[answerInfo.currentIndex].ntry);
-
-    // const targetQuestion = quizInfo.find((thisone) => thisone.id === id);
+    console.log("Updated num:" + new_ntry + ", " + new_ncorr);
 
     // クイズのインデックスをインクリメント
     let nextIndex = answerInfo.currentIndex + 1;
     if (quizInfo.length === nextIndex) {
+      console.log("next index is reset to 0.");
+
       nextIndex = 0;
       setCycle(ncycle + 1);
     }
     setAnswerInfo({
       isAnswered: false,
       currentIndex: nextIndex,
-      inputAnswer: ""
+      inputAnswer: "",
+      isCorrect: false
     });
+    console.log("end of the push");
   });
 
   return (
