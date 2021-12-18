@@ -81,7 +81,11 @@ export const QuestionBox = (props) => {
 
   return (
     <div>
-      <h1> {ncycle} </h1>
+      <h1>
+        {" "}
+        この問題の過去の正答率{" "}
+        {((current_question.ncorr / current_question.ntry) * 100.0).toFixed(1)}%
+      </h1>
       <Flex bg="darkgreen.100" size="400px" w="800px">
         <Box>
           <Stack spacing={3}>
