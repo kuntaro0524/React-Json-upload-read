@@ -6,6 +6,8 @@ import { answerState, quizState, readState } from "../hooks/quizState";
 
 import { AnswerBox } from "../atom/AnswerBox";
 import { useCycleNum } from "../hooks/useCycleNum";
+import { useNtry } from "../hooks/useNtrial";
+import { useNcorr } from "../hooks/useNcorr";
 
 export const QuestionBox = (props) => {
   // recoilを利用して quizState.js で設定したグローバル変数と関数へアクセス
@@ -17,6 +19,14 @@ export const QuestionBox = (props) => {
 
   // Providerで定義したサイクル数のフックス
   const { ncycle, setCycle } = useCycleNum();
+
+  // Providerで定義したこれまでのトライ回数
+  const { ntrial_total, setNtrialTotal } = useNtry();
+
+  // Providerで定義したこれまでのトライ回数
+  const { ncorr_total, setNcorrTotal } = useNcorr();
+
+  console.log("NCORR_TOTAL=" + ncorr_total);
 
   const onChangeInput = useCallback((e) => {
     let userAnswer = e.target.value;
@@ -48,6 +58,8 @@ export const QuestionBox = (props) => {
     let new_ncorr = current_question.ncorr;
     if (answerInfo.isCorrect) {
       new_ncorr = new_ncorr + 1;
+      // 全体の正解数も記録更新
+      setNcorrTotal(ncorr_total + 1);
     }
     const new_obj = {
       Question: current_question.Question,
@@ -76,7 +88,10 @@ export const QuestionBox = (props) => {
       inputAnswer: "",
       isCorrect: false
     });
-    console.log("end of the push");
+    // 今回何問問題をやっているか
+    setNtrialTotal(ntrial_total + 1);
+    console.log(`今までにやった問題数 ${ntrial_total}`);
+    console.log(`今までの正答数 ${ncorr_total}`);
   });
 
   return (

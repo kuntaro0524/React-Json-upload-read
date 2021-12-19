@@ -3,6 +3,8 @@ import { ReactNode, VFC } from "react";
 import { Button } from "@chakra-ui/react";
 import { useCycleNum } from "../hooks/useCycleNum";
 import { useResult } from "../hooks/useResult";
+import { useNcorr } from "../hooks/useNcorr";
+import { useNtry } from "../hooks/useNtrial";
 
 import {
   Table,
@@ -14,6 +16,7 @@ import {
   Td,
   TableCaption
 } from "@chakra-ui/react";
+import { useRecoilTransactionObserver_UNSTABLE } from "recoil";
 
 type Props = {
   n_question: number;
@@ -27,10 +30,10 @@ export const ScoreTable: VFC<Props> = memo(() => {
   // Providerで定義したサイクル数のフックス
   const { ncycle, setCycle } = useCycleNum();
   const { all_result, setResult } = useResult();
-  const n_question = 3;
-  const n_corr = 5;
-  const corr_ratio = 35.0;
-  // console.log("ALL_RESULTS"+all_result);
+  const { ncorr_total, setNcorrTotal } = useNcorr();
+  const { ntrial_total, setNtrialTotal } = useNtry();
+
+  let correct_ratio = ((ncorr_total / ntrial_total) * 100.0).toFixed(2.0);
 
   // const { n_question, n_corr, corr_ratio, ncycle } = props;
   return (
@@ -49,13 +52,13 @@ export const ScoreTable: VFC<Props> = memo(() => {
       <Tbody>
         <Tr>
           <Td fontSize="20px" textAlign="center">
-            {n_question}
+            {ntrial_total}
           </Td>
           <Td fontSize="20px" textAlign="center">
-            {n_corr}
+            {ncorr_total}
           </Td>
           <Td fontSize="20px" textAlign="center" isNumeric>
-            {corr_ratio}
+            {correct_ratio}
           </Td>
           <Td fontSize="20px" textAlign="center" isNumeric>
             {ncycle}
